@@ -34,36 +34,36 @@ $ git submodule add git://github.com/fnash/FnashJsParamBundle.git vendor/fnash/f
 Add `Fnash` namespace to autoload
 
 ```php
+<?php
+// app/autoload.php
 
-    // app/autoload.php
-
-    $loader->registerNamespaces(array(
-        // ...
-        'Fnash' => __DIR__.'/../vendor/fnash/fnash-js-param-bundle',
-        // ...
-    ));
+$loader->registerNamespaces(array(
+    // ...
+    'Fnash' => __DIR__.'/../vendor/fnash/fnash-js-param-bundle',
+    // ...
+));
 ```
 
 ### Step 2: Register bundle in `AppKernel` class
 
 ```php
+<?php
+// app/AppKernel.php
 
-    // app/AppKernel.php
-
-    $bundles = array(
-        // ...
-        new Fnash\JsParamBundle\FnashJsParamBundle(),
-        // ...
-    );
+$bundles = array(
+    // ...
+    new Fnash\JsParamBundle\FnashJsParamBundle(),
+    // ...
+);
 ```
 
 ### Step 3: Import routing
 
 ```php
+# app/routing.yml
 
-    # app/routing.yml
-    fnash_js_param_routing:
-        resource: "@FnashJsParamBundle/Resources/config/routing.xml"
+fnash_js_param_routing:
+    resource: "@FnashJsParamBundle/Resources/config/routing.xml"
 ```
 
 
@@ -72,30 +72,30 @@ Add `Fnash` namespace to autoload
 Given your parameters file
 
 ```yaml
+# app/parameters.yml
 
-    # app/parameters.yml
-
-    parameters:
-        param1:   value1
-        param2:   value2
-        param3:   value3
-        param4:   value4
+parameters:
+    param1:   value1
+    param2:   value2
+    param3:   value3
+    param4:   value4
 ```
 
 Add some parameters you want to expose in your javascript
 
 ```yaml
+# app/config.yml
 
-    # app/config.yml
-
-    fnash_js_param: 
-        expose: [param1, param2]
+fnash_js_param: 
+    expose: [param1, param2]
 ```
+
+Be careful! Do not expose critical infos such as passwords etc..
+
 
 ### Step 5: Add javascript file to base template
 
 ```html
-
     {% block javascripts %}
     .............
     <script src="{{ path('fnash_js_param_js') }}"></script>
@@ -108,8 +108,6 @@ Add some parameters you want to expose in your javascript
 ## Get your parameters from javascript
 
 ```js
-
-    alert(FnashJsParam.param1);
-    alert(FnashJsParam.param2);
+alert(FnashJsParam.param1);
+alert(FnashJsParam.param2);
 ```
-

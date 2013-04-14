@@ -108,6 +108,6 @@ Be careful! Do not expose critical infos such as passwords etc..
 ## Get your parameters from javascript
 
 ```js
-alert(FnashJsParam.param1);
-alert(FnashJsParam.param2);
+alert(FnashJsParam.param1); // value1
+alert(FnashJsParam.param2); // value2
 ```

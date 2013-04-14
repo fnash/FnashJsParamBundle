@@ -7,7 +7,7 @@ class ParametersExtractor implements ParametersExtractorInterface
     
     protected $paramNames = array();
     
-    public $parameters = array();
+    protected $parameters = array();
     
     protected $container;
 

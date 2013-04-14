@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="fnash_js_param.extractor.class">Fnash\JsParamBundle\Extractor\ParametersExtractor</parameter>        
+        <parameter key="fnash_js_param.controller.class">Fnash\JsParamBundle\Controller\Controller</parameter>        
+    </parameters>
+
+    <services>
+        <service id="fnash_js_param.controller" class="%fnash_js_param.controller.class%">
+            <argument type="service" id="fnash_js_param.extractor" />
+        </service>
+        
+        <service id="fnash_js_param.extractor" class="%fnash_js_param.extractor.class%">
+            <argument type="service" id="service_container" />
+            <argument>%fnash_js_param.exposed_params%</argument>
+        </service>
+    </services>
+
+</container>

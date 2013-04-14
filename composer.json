@@ -1,0 +1,21 @@
+{
+    "name": "fnash/",
+    "type": "symfony-bundle",
+    "description": "FnashJsParamBundle",
+    "keywords": ["Parameters Js"],
+    "authors": [
+        {
+            "name": "Fayez Naccache",
+            "email": "fayez.naccache@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "Fnash\\JsParamBundle": "" }
+    },
+    "target-dir": "Fnash/JsParamBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.1-dev"
+        }
+    }
+}

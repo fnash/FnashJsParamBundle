@@ -1,21 +1,24 @@
 {
-    "name": "fnash/",
+    "name": "fnash/FnashJsParamBundle",
     "type": "symfony-bundle",
     "description": "FnashJsParamBundle",
-    "keywords": ["Parameters Js"],
+    "keywords": ["Parameters", "Js"],
+    "homepage": "http://github.com/fnash/FnashJsParamBundle",
+    "license": "MIT",
     "authors": [
         {
             "name": "Fayez Naccache",
             "email": "fayez.naccache@gmail.com"
         }
     ],
+    "require": {
+        "php": ">=5.3.2"
+    },
+    "require-dev": {
+        "symfony/framework-bundle": ">=2.1,<2.2-dev"
+    },
     "autoload": {
         "psr-0": { "Fnash\\JsParamBundle": "" }
     },
-    "target-dir": "Fnash/JsParamBundle",
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.1-dev"
-        }
-    }
+    "target-dir": "Fnash/JsParamBundle"
 }

@@ -1,7 +1,7 @@
 {
-    "name": "fnash/FnashJsParamBundle",
+    "name": "fnash/fnash-js-param-bundle",
     "type": "symfony-bundle",
-    "description": "FnashJsParamBundle",
+    "description": "Simple way to expose some symfony2 container parameters to javascript",
     "keywords": ["Parameters", "Js"],
     "homepage": "http://github.com/fnash/FnashJsParamBundle",
     "license": "MIT",

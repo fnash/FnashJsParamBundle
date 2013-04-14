@@ -95,7 +95,7 @@ Be careful! Do not expose critical infos such as passwords etc..
 
 ### Step 5: Add javascript file to base template
 
-```twig
+```html
     {% block javascripts %}
     .............
     <script src="{{ path('fnash_js_param_js') }}"></script>

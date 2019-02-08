@@ -2,16 +2,14 @@
 
 namespace Fnash\JsParamBundle\DependencyInjection;
 
+use Fnash\JsParamBundle\ParamHolder;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-/**
- * This is the class that loads and manages your bundle configuration
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
- */
 class FnashJsParamExtension extends Extension
 {
     /**
@@ -23,30 +21,18 @@ class FnashJsParamExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $exposedParams = $config['expose'];
-        if ($this->checkParams($exposedParams, $container))
-        {
-            $container->setParameter('fnash_js_param.exposed_params', $exposedParams);            
+
+        $definition = new Definition(ParamHolder::class);
+        foreach ($exposedParams as $paramName) {
+            if (!$container->hasParameter($paramName)) {
+                throw new InvalidArgumentException('The parameter '.$paramName.' does not exist.');
+            }
+
+            $definition->addMethodCall('addParameter', [$paramName, $container->getParameter($paramName)]);
         }
-        else
-        {
-            $container->setParameter('fnash_js_param.exposed_params', array());
-        }
-        
-        
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.xml');
-    }
-    
-    private function checkParams(array $params, ContainerBuilder $container)
-    {
-        foreach($params as $param)
-        {
-            if ( ! $container->hasParameter($param))
-            {
-                throw new \InvalidArgumentException('The parameter '.$param.' does not exist.');
-            }            
-        }
-        
-        return true;
+        $container->setDefinition(ParamHolder::class, $definition);
+
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
     }
 }

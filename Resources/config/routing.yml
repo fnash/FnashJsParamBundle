@@ -1,0 +1,4 @@
+fnash_js_param_js:
+    defaults: { _controller: FnashJsParamBundle:Param:js }
+    path:   '/js/exposed_params.js'
+    methods:    [GET]

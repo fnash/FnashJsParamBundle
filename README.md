@@ -5,62 +5,23 @@ Simple way to expose some symfony2 container parameters to javascript
 
 ## Installation
 
-### Step 1: Download sources
-
-#### Option 1: via Composer
-
-Add FnashJsParamBundle in your composer.json:
-
-```js
-{
-    "require": {
-        "fnash/fnash-js-param-bundle": "*"
-    }
-}
-```
-
-Then run:
+### Install
 
 ``` bash
-$ php composer.phar update fnash/fnash-js-param-bundle
+$ php composer require fnash/js-param-bundle
 ```
 
-#### Option 2: via Git
-
-``` bash
-$ git submodule add git://github.com/fnash/FnashJsParamBundle.git vendor/fnash/fnash-js-param-bundle/Fnash/JsParamBundle
-```
-
-or if you are using say SVN in your project
-
-``` bash
-$ git clone git://github.com/fnash/FnashJsParamBundle.git vendor/fnash/fnash-js-param-bundle/Fnash/JsParamBundle
-```
-
-Add `Fnash` namespace to autoload
+### Register bundle
 
 ```php
 <?php
-// app/autoload.php
+// AppKernel.php
 
-$loader->registerNamespaces(array(
-    // ...
-    'Fnash' => __DIR__.'/../vendor/fnash/fnash-js-param-bundle',
-    // ...
-));
-```
-
-### Step 2: Register bundle in `AppKernel` class
-
-```php
-<?php
-// app/AppKernel.php
-
-$bundles = array(
+$bundles = [
     // ...
     new Fnash\JsParamBundle\FnashJsParamBundle(),
     // ...
-);
+];
 ```
 
 ### Step 3: Import routing
@@ -69,7 +30,7 @@ $bundles = array(
 # app/routing.yml
 
 fnash_js_param_routing:
-    resource: "@FnashJsParamBundle/Resources/config/routing.xml"
+    resource: "@FnashJsParamBundle/Resources/config/routing.yml"
 ```
 
 
@@ -114,6 +75,6 @@ Be careful! Do not expose critical infos such as passwords etc..
 ## Get your parameters from javascript
 
 ```js
-alert(FnashJsParam.param1); // value1
-alert(FnashJsParam.param2); // value2
+alert(window.FnashJsParam.param1); // value1
+alert(window.FnashJsParam.param2); // value2
 ```

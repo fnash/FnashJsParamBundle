@@ -1,0 +1,5 @@
+services:
+    Fnash\JsParamBundle\Controller\:
+        resource: '../../Controller'
+        public: true
+        tags: ['controller.service_arguments']
